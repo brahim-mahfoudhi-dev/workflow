@@ -36,11 +36,9 @@ public class User {
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
     private List<Project> managedProjects;
 
-    // One user can have many assigned tasks
     @OneToMany(mappedBy = "assignedTo", cascade = CascadeType.ALL)
     private Set<Task> assignedTasks;
 
-    // One user can write many comments
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private Set<Comment> comments;
 

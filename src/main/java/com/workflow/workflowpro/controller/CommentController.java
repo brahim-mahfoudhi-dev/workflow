@@ -18,10 +18,6 @@ public class CommentController {
 
     /**
      * Add a comment to a task
-     * @param taskId ID of the task
-     * @param content Text content of the comment
-     * @param authentication Logged-in user authentication
-     * @return Created comment
      */
     @PostMapping("/task/{taskId}")
     public ResponseEntity<CommentDTO> addComment(
@@ -29,15 +25,12 @@ public class CommentController {
             @RequestParam String content,
             Authentication authentication
     ) {
-        // Assume your CommentService retrieves userId from authentication
         CommentDTO createdComment = commentService.addCommentToTask(taskId, content, authentication);
         return ResponseEntity.ok(createdComment);
     }
 
     /**
      * List all comments for a task
-     * @param taskId Task ID
-     * @return List of comments
      */
     @GetMapping("/task/{taskId}")
     public ResponseEntity<List<CommentDTO>> listComments(@PathVariable Long taskId) {

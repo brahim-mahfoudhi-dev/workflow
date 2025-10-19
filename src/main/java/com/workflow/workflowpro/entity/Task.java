@@ -35,17 +35,14 @@ public class Task {
     @Column(nullable = false)
     private LocalDateTime deadline;
 
-    // Many tasks can belong to one project
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    // Many tasks can be assigned to one user
     @ManyToOne
-    @JoinColumn(name = "user_id") // remove unique unless needed
+    @JoinColumn(name = "user_id")
     private User assignedTo;
 
-    // A task can have multiple comments
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Comment> comments;
 }
